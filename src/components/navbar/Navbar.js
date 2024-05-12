@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 
-const Header = () => {
+export default function NavBar(){
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
@@ -9,8 +9,8 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#">All Movies</Nav.Link>
-                        <Nav.Link href="#">Favorite Movies</Nav.Link>
+                        <Nav.Link href="/">All Movies</Nav.Link>
+                        <Nav.Link href="/favLIst">Favorite Movies</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
@@ -18,4 +18,3 @@ const Header = () => {
     );
 };
 
-export default Header;
