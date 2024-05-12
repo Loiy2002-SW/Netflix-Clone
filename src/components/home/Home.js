@@ -25,15 +25,16 @@ export default function Home() {
     }, []);
 
     return (
-        <>
+     
+            <>
             {loading ? (
               
-             <h1>loading....</h1>
-          
-            ) : (
-                <MovieList data={movies} />
-            )}
-        </>
+              <h1>loading....</h1>
+           
+             ) : (
+                 <MovieList data={movies} />
+             )}</>
+       
     );
 }
 
