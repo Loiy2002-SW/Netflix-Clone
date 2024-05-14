@@ -3,11 +3,11 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './ModalMovie.css';
+import './ModalFavMovie.css';
 
 
-export default function ModalMovie(props) {
-    const [comment, setComment] = useState('');
+export default function ModalFavMovie(props) {
+    const [comment, setComment] = useState(props.movieData.comment);
 
     const handleClose = () => {
         props.onClose();
@@ -17,8 +17,10 @@ export default function ModalMovie(props) {
         setComment(event.target.value);
     };
 
-    const handleSubmit = () => {
-        let url = `${process.env.REACT_APP_serverURL}/addMovie`;
+    const handleSubmit = (id) => {
+        let url = `${process.env.REACT_APP_serverURL}/updatecomment/${id}`;
+
+        console.log('the id is: ', id);
 
         let data = {
             id : props.movieData.id,
@@ -29,9 +31,11 @@ export default function ModalMovie(props) {
             comment: comment || "No comments"
         };
 
-        axios.post(url, data).then(response => {
+        axios.put(url, data).then(response => {
             
-            console.log('Data was added successfully!');
+            console.log('Data was updated successfully!');
+            toast.success('Your comment updated successfully! ', { autoClose: 2000 });
+            setComment('');
         
         }).catch(error => {
             
@@ -40,9 +44,7 @@ export default function ModalMovie(props) {
             
         });
 
-        //alert(`you comment: [${comment}] was saved successfully ^_^`)
-        toast.success('Movie added to favorites successfully! ', { autoClose: 2000 });
-        setComment('');
+       
 
     };
 
@@ -56,7 +58,7 @@ export default function ModalMovie(props) {
                     <img src={`https://image.tmdb.org/t/p/w185${props.movieData.poster_path}`} alt={props.movieData.title} />
                     
                     <Form.Group controlId="comment" className='form-group'>
-                        <Form.Label>Add a Comment</Form.Label>
+                        <Form.Label>Change your Comment:</Form.Label>
                         <Form.Control
                             type="text"
                             value={comment}
@@ -69,7 +71,7 @@ export default function ModalMovie(props) {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleSubmit}>
+                    <Button variant="primary" onClick={()=> handleSubmit(props.movieData.id)}>
                         Save changes
                     </Button>
                 </Modal.Footer>

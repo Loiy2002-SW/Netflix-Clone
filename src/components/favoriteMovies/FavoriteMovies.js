@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MovieList from "../movieList/MovieList";
 import axios from "axios";
+import './FavoriteMovies.css';
 
 
 
@@ -9,7 +10,7 @@ export default function FavList(){
     const [loading, setLoading] = useState(true); 
 
     const getFavoriteMovies = () => {
-        let url = 'http://localhost:3001/getFavorite';
+        let url = `${process.env.REACT_APP_serverURL}/getFavorite`;
         axios.get(url)
             .then(response => {
                 setFavMovies(response.data);
@@ -30,10 +31,11 @@ export default function FavList(){
             <>
             {loading ? (
               
-              <h1>loading....</h1>
+              <h1 className="h1-message" >loading....</h1>
            
              ) : (
-                 <MovieList data={favMovies} />
+                favMovies.length?
+                 (<MovieList isFavorite = {true} data={favMovies} />) : (<h1 className="h1-message">Favorite list is empty😢, try adding some...😎</h1>)
              )}</>
        
     );

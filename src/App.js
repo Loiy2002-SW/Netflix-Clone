@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router';
 import './App.css';
 import Home from './components/home/Home';
-import FavList from './components/favList/FavList';
+import FavoriteMovies from './components/favoriteMovies/FavoriteMovies';
 import Header from './components/header/Header';
 
 export default function App() {
@@ -14,7 +14,7 @@ export default function App() {
     <Routes>
       
       <Route path='/' element={<Home />} />
-      <Route path='/favList' element={<FavList />} />
+      <Route path='/favoriteMovies' element={<FavoriteMovies />} />
 
     </Routes>
     </>

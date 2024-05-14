@@ -10,7 +10,7 @@ export default function NavBar(){
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/">All Movies</Nav.Link>
-                        <Nav.Link href="/favLIst">Favorite Movies</Nav.Link>
+                        <Nav.Link href="/favoriteMovies">Favorite Movies</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

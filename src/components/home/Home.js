@@ -8,7 +8,7 @@ export default function Home() {
     const [loading, setLoading] = useState(true); 
 
     const getTrendingMovies = () => {
-        let url = 'http://localhost:3001/trending';
+        let url = `${process.env.REACT_APP_serverURL}/trending`;
         axios.get(url)
             .then(response => {
                 setMovies(response.data);
@@ -29,10 +29,10 @@ export default function Home() {
             <>
             {loading ? (
               
-              <h1>loading....</h1>
+              <h1 className="h1-message">loading....</h1>
            
              ) : (
-                 <MovieList data={movies} />
+                 <MovieList isFavorite = {false}  data={movies} />
              )}</>
        
     );
